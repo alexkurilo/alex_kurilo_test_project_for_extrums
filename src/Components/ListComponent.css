@@ -1,0 +1,30 @@
+.listWindow{
+    /*overflow-y: scroll;*/
+    /*height:100vh;*/
+}
+.listSection{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+
+
+}
+
+.listSection:hover{
+    background-color: #FFFFFF;
+    border: 1px solid #DCDCDC;
+    border-radius: 0.5rem;
+    transform: matrix(1, 0, 0, 1.1, 0, 0);
+    width: 100%;
+}
+
+.iconAvatar{
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.names{
+    padding: 0.5rem ;
+}

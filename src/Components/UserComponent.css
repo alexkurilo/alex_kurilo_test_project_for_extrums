@@ -1,0 +1,30 @@
+.sectionWindow{
+    /*-webkit-transition: width 1s linear;
+    -moz-transition: width 1s linear;
+    transition: width 1s linear;*/
+    display: flex;
+    flex-direction: column;
+
+}
+
+.center{
+    text-align: center;
+}
+
+.usernameString,
+.addressString,
+.companyString{
+    display: inline-flex;
+    align-items: baseline;
+}
+
+.headline{
+    width: 10rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.button{
+    display: flex;
+    justify-content: flex-end;
+}
