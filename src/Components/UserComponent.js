@@ -67,7 +67,7 @@ class UserComponent extends React.Component {
         return (
             <form className={"sectionWindow"}
             >
-                <center><h3>{this.props.usersList[this.index].username}</h3></center>
+                <center><h1>{this.props.usersList[this.index].username}</h1></center>
                 <div className={"usernameString"}>
                     <section className={"headline"}>User : </section>
                     <TextFieldsStandart value = {this.props.usersList[this.index].username}

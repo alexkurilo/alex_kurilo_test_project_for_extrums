@@ -1,10 +1,6 @@
 .App {
   display: flex;
-  background-color: #F8F8FF;
+  background-color: #8B8682;
   height:100vh;
-}
-
-.listBox{
-  background-color: #F8F8FF;
 }
 

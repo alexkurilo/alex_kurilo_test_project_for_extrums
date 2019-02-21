@@ -17,7 +17,6 @@ const ListComponent = ({usersList, onOpenModal}) => {
                         <div className="listSection"
                              key={index}
                              onClick={()=> onclickfunc(item, index)}
-
                         >
                             <SimpleModal    item = {item}
                                             index = {index}

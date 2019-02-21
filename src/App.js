@@ -25,7 +25,7 @@ class App extends Component {
             <div className="App">
                 <Switch>
                     <Route exact path = '/' component = {ListComponent}/>
-                    <Route path = '/:user' component = {UserComponent} />
+                    <Route path = '/user/:user' component = {UserComponent} />
                 </Switch>
             </div>
         );

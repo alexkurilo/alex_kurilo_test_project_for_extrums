@@ -1,28 +1,25 @@
-.listWindow{
-    /*overflow-y: scroll;*/
-    /*height:100vh;*/
-}
 .listSection{
-    width: 80%;
+    width: 50%;
     margin: 0 auto;
     display: flex;
     align-items: center;
     font-size: 1.3rem;
+    align: center;
 
 
 }
 
 .listSection:hover{
     background-color: #FFFFFF;
-    border: 1px solid #DCDCDC;
+    border: 1px solid #8B8682;
     border-radius: 0.5rem;
     transform: matrix(1, 0, 0, 1.1, 0, 0);
-    width: 100%;
+    width: 50%;
 }
 
-.iconAvatar{
-    height: 2.5rem;
-    width: 2.5rem;
+.link{
+    text-decoration: none;
+    color: #FFFFFF;
 }
 
 .names{

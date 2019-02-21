@@ -29,7 +29,7 @@ function MyButton(props) {
 
     return (
         <Button className={classNames(props.classes.root, props.className)}
-                style = {{backgroundColor: "#CD00CD"}}
+                style = {{backgroundColor: "#8B8682"}}
                 onClick = {(event) => {HandleClick(event) }}
         >
             Save change information

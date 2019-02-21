@@ -57,8 +57,10 @@ class SimpleModal extends React.Component {
                         <Typography variant="subtitle1" id="simple-modal-description">
                             Would you like to change personal information of {this.props.item.username}.
                         </Typography>
-                        <Button onClick={this.handleClose}>
-                            <Link   to={"/"+this.props.item.username}
+                        <Button onClick={this.handleClose}
+                                style = {{backgroundColor: "#8B8682"}}
+                        >
+                            <Link   to={"/user/"+this.props.item.username}
                                     className={"link"}
                                     index = {this.props.index}
                             >
