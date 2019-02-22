@@ -4,7 +4,7 @@ import SimpleModal from "../UI-Components/SimpleModals";
 
 import "./ListComponent.css";
 
-const ListComponent = ({users, onOpenModal, onSaveIndex}) => {
+const ListComponent = ({appDataReducer, onOpenModal, onSaveIndex}) => {
     const onclickfunc = (item, index) => {
         onOpenModal([true, index]);
         onSaveIndex(index);
@@ -35,15 +35,14 @@ const ListComponent = ({users, onOpenModal, onSaveIndex}) => {
 
     return (
         <div className={"sectionWindow"}>
-            {ShowList(users)}
+            {ShowList(appDataReducer)}
         </div>
     );
 };
 
 export default connect(
     state => ({
-        usersList: state.usersList,
-        users: state.usersReducer.users
+        appDataReducer: state.appDataReducer
     }),
     dispatch => ({
         onOpenModal: (data) => {

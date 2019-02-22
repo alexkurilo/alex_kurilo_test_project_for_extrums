@@ -45,7 +45,7 @@ class SimpleModal extends React.Component {
                 <Modal
                         aria-labelledby="simple-modal-title"
                         aria-describedby="simple-modal-description"
-                        open={this.props.saveIndex !== "" ?  this.props.users[this.props.index].openModal : false}
+                        open={this.props.saveIndex !== "" ?  this.props.appDataReducer[this.props.index].openModal : false}
                         onClose={this.handleClose}
                 >
                     <div style={getModalStyle()} className={classes.paper}>
@@ -58,7 +58,7 @@ class SimpleModal extends React.Component {
                         <Button onClick={this.handleClose}
                                 style = {{backgroundColor: "#8B8682"}}
                         >
-                            <Link   to={"/user/"+this.props.item.username}
+                            <Link   to={"/"+this.props.item.username}
                                     className={"link"}
                             >
                                 Yes, I wish
@@ -77,7 +77,7 @@ SimpleModal.propTypes = {
 
 const SimpleModalWrapped = connect(
     (state) => ({
-        users: state.usersReducer.users,
+        appDataReducer: state.appDataReducer,
         saveIndex: state.saveIndex
     }),
 

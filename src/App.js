@@ -9,7 +9,7 @@ import "./App.css";
 
 class App extends Component {
     componentWillMount ( ) {
-        if (this.props.users.length === 0){
+        if (this.props.users.length === 0) {
             this.props.onRequestUsers();
         }
     };
@@ -19,7 +19,7 @@ class App extends Component {
             <div className="App">
                 <BrowserRouter>
                     <Switch>
-                        <Route exact={true} path = '/user/:user' component = {UserComponent} />
+                        <Route exact={true} path = '/:user' component = {UserComponent} />
                         <Route path = '/' component = {ListComponent}/>
                     </Switch>
                 </BrowserRouter>
@@ -30,7 +30,8 @@ class App extends Component {
 
 export default connect(
     state => ({
-        usersList: state.usersList,
+        localDataReducer: state.localDataReducer,
+        appDataReducer: state.appDataReducer,
         users: state.usersReducer.users
     }),
     dispatch => ({

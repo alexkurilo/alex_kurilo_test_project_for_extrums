@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
+import { AddDataFromLocalStorage} from "../LocalStorage/LocalStorage";
 
 const styles = theme => ({
     root: {
@@ -23,8 +24,9 @@ const styles = theme => ({
 function MyButton(props) {
     const HandleClick =  () => {
         props.onChangeUserData([props.changedData, props.index]);
+        const data = AddDataFromLocalStorage(props.changedData, props.localDataReducer);
+        props.onChangeLocalData(data);
         props.onClearData();
-        props.history.push("/");
     };
 
     return (
@@ -32,7 +34,7 @@ function MyButton(props) {
                 style = {{backgroundColor: "#8B8682"}}
                 onClick = {(event) => {HandleClick(event) }}
         >
-            <Link   to={"/user"}
+            <Link   to={"/"}
                     className={"link"}
             >
                 Save change information
@@ -47,9 +49,10 @@ MyButton.propTypes = {
     className: PropTypes.string,
 };
 
-export default withRouter(connect(
+export default connect(
     (state) => ({
-        changedData: state.changedData
+        changedData: state.changedData,
+        localDataReducer: state.localDataReducer
     }),
 
     dispatch => ({
@@ -57,8 +60,12 @@ export default withRouter(connect(
             const payload = data;
             dispatch({type: "CHANGE_DATA", payload})
         },
+        onChangeLocalData: (data) => {
+            const payload = data;
+            dispatch({type: "CHANGE_LOCAL_DATA", payload})
+        },
         onClearData: () => {
             dispatch({type: "CLEAR_DATA"})
         }
     })
-)(withStyles(styles)(MyButton)));
+)(withStyles(styles)(MyButton));
