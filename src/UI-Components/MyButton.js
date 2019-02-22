@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -32,7 +32,11 @@ function MyButton(props) {
                 style = {{backgroundColor: "#8B8682"}}
                 onClick = {(event) => {HandleClick(event) }}
         >
-            Save change information
+            <Link   to={"/user"}
+                    className={"link"}
+            >
+                Save change information
+            </Link>
         </Button>
     );
 }

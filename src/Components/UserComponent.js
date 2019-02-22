@@ -8,7 +8,7 @@ import "./UserComponent.css";
 
 class UserComponent extends React.Component {
     componentWillMount ( ) {
-        this.props.usersList.forEach((item, index)=> {
+        this.props.users.forEach((item, index)=> {
             if (item.username === this.props.match.params.user) this.index = index;
         })
     }
@@ -67,26 +67,26 @@ class UserComponent extends React.Component {
         return (
             <form className={"sectionWindow"}
             >
-                <center><h1>{this.props.usersList[this.index].username}</h1></center>
+                <center><h1>{this.props.users[this.index].username}</h1></center>
                 <div className={"usernameString"}>
                     <section className={"headline"}>User : </section>
-                    <TextFieldsStandart value = {this.props.usersList[this.index].username}
+                    <TextFieldsStandart value = {this.props.users[this.index].username}
                                         placeholder = "username"
                                         readfield={this.ReadUsername}
                     />
-                    <TextFieldsStandart value = {this.props.usersList[this.index].name}
+                    <TextFieldsStandart value = {this.props.users[this.index].name}
                                         placeholder = "name"
                                         readfield={this.ReadName}
                     />
-                    <TextFieldsStandart value = {this.props.usersList[this.index].phone}
+                    <TextFieldsStandart value = {this.props.users[this.index].phone}
                                         placeholder = "phone"
                                         readfield={this.ReadPhone}
                     />
-                    <TextFieldsStandart value = {this.props.usersList[this.index].email}
+                    <TextFieldsStandart value = {this.props.users[this.index].email}
                                         placeholder = "email"
                                         readfield={this.ReadEmail}
                     />
-                    <TextFieldsStandart value = {this.props.usersList[this.index].website}
+                    <TextFieldsStandart value = {this.props.users[this.index].website}
                                         placeholder = "website"
                                         readfield={this.ReadWebsite}
                     />
@@ -94,34 +94,34 @@ class UserComponent extends React.Component {
 
                 <div className={"addressString"}>
                     <section className={"headline"}>Address : </section>
-                    <TextFieldsStandart value = {this.props.usersList[this.index].address.city}
+                    <TextFieldsStandart value = {this.props.users[this.index].address.city}
                                         placeholder = "city"
                                         readfield={this.ReadCity}
                     />
-                    <TextFieldsStandart value = {this.props.usersList[this.index].address.street}
+                    <TextFieldsStandart value = {this.props.users[this.index].address.street}
                                         placeholder = "street"
                                         readfield={this.ReadStreet}
                     />
-                    <TextFieldsStandart value = {this.props.usersList[this.index].address.suite}
+                    <TextFieldsStandart value = {this.props.users[this.index].address.suite}
                                         placeholder = "suite"
                                         readfield={this.ReadSuite}
                     />
-                    <TextFieldsStandart value = {this.props.usersList[this.index].address.zipcode}
+                    <TextFieldsStandart value = {this.props.users[this.index].address.zipcode}
                                         placeholder = "zipcode"
                                         readfield={this.ReadZipcode}
                     />
                 </div>
                 <div className={"companyString"}>
                     <section  className={"headline"}>Company : </section>
-                    <TextFieldsStandart value = {this.props.usersList[this.index].company.name}
+                    <TextFieldsStandart value = {this.props.users[this.index].company.name}
                                         placeholder = "name"
                                         readfield={this.ReadCompanyName}
                     />
-                    <TextFieldsStandart value = {this.props.usersList[this.index].company.catchPhrase}
+                    <TextFieldsStandart value = {this.props.users[this.index].company.catchPhrase}
                                         placeholder = "catchPhrase"
                                         readfield={this.ReadCatchPhrase}
                     />
-                    <TextFieldsStandart value = {this.props.usersList[this.index].company.bs}
+                    <TextFieldsStandart value = {this.props.users[this.index].company.bs}
                                         placeholder = "bs"
                                         readfield={this.ReadBS}
                     />
@@ -136,7 +136,8 @@ class UserComponent extends React.Component {
 
 export default connect(
     state => ({
-        usersList: state.usersList
+        usersList: state.usersList,
+        users: state.usersReducer.users,
     }),
     dispatch => ({
         onChangeData: (data) => {

@@ -4,9 +4,10 @@ import SimpleModal from "../UI-Components/SimpleModals";
 
 import "./ListComponent.css";
 
-const ListComponent = ({usersList, onOpenModal}) => {
+const ListComponent = ({users, onOpenModal, onSaveIndex}) => {
     const onclickfunc = (item, index) => {
         onOpenModal([true, index]);
+        onSaveIndex(index);
     };
 
     const ShowList = (data) => {
@@ -20,6 +21,7 @@ const ListComponent = ({usersList, onOpenModal}) => {
                         >
                             <SimpleModal    item = {item}
                                             index = {index}
+                                            openModal = {item.openModal}
                             />
                             <section className="names">
                                 {item.username}
@@ -33,19 +35,24 @@ const ListComponent = ({usersList, onOpenModal}) => {
 
     return (
         <div className={"sectionWindow"}>
-            {ShowList(usersList)}
+            {ShowList(users)}
         </div>
     );
 };
 
 export default connect(
     state => ({
-        usersList: state.usersList
+        usersList: state.usersList,
+        users: state.usersReducer.users
     }),
     dispatch => ({
         onOpenModal: (data) => {
             const payload = data;
             dispatch({type: "OPEN_MODAL", payload})
+        },
+        onSaveIndex: (data) => {
+            const payload = data;
+            dispatch({type: "SAVE_INDEX", payload})
         }
     })
 )(ListComponent);

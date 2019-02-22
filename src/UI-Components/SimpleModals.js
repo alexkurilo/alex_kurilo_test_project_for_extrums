@@ -7,13 +7,9 @@ import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
-
 function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
+    const top = 50 ;
+    const left = 50 ;
 
     return {
         top: `${top}%`,
@@ -38,17 +34,19 @@ class SimpleModal extends React.Component {
         event.preventDefault();
         event.stopPropagation();
         this.props.onCloseModal([false, this.props.index]);
+        this.props.onClearIndex();
     };
 
     render() {
-        const { classes } = this.props;
+        const { classes} = this.props;
         return (
-            <div>
+            <div
+            >
                 <Modal
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description"
-                    open={this.props.usersList[this.props.index].openModal}
-                    onClose={this.handleClose}
+                        aria-labelledby="simple-modal-title"
+                        aria-describedby="simple-modal-description"
+                        open={this.props.saveIndex !== "" ?  this.props.users[this.props.index].openModal : false}
+                        onClose={this.handleClose}
                 >
                     <div style={getModalStyle()} className={classes.paper}>
                         <Typography variant="h6" id="modal-title">
@@ -62,7 +60,6 @@ class SimpleModal extends React.Component {
                         >
                             <Link   to={"/user/"+this.props.item.username}
                                     className={"link"}
-                                    index = {this.props.index}
                             >
                                 Yes, I wish
                             </Link>
@@ -80,13 +77,17 @@ SimpleModal.propTypes = {
 
 const SimpleModalWrapped = connect(
     (state) => ({
-        usersList: state.usersList
+        users: state.usersReducer.users,
+        saveIndex: state.saveIndex
     }),
 
     dispatch => ({
         onCloseModal: (data) => {
             const payload = data;
             dispatch({type: "CLOSE_MODAL", payload})
+        },
+        onClearIndex: () => {
+            dispatch({type: "CLEAR_INDEX"})
         }
     })
 )(withStyles(styles)(SimpleModal));

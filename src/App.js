@@ -1,32 +1,28 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 import ListComponent from "./Components/ListComponent";
 import UserComponent from "./Components/UserComponent";
 
 import "./App.css";
 
-//const UrlApi = "http://reqres.in/api/users/2";
-const UrlApi = "https://jsonplaceholder.typicode.com/users";
-
 class App extends Component {
     componentWillMount ( ) {
-        if (this.props.usersList.length === 0){
-            fetch(`${UrlApi}`)
-                .then((response) => response.json())
-                .then((response) => this.props.onSaveUsersList(response))
-                .catch( alert )
+        if (this.props.users.length === 0){
+            this.props.onRequestUsers();
         }
     };
 
     render() {
         return (
             <div className="App">
-                <Switch>
-                    <Route exact path = '/' component = {ListComponent}/>
-                    <Route path = '/user/:user' component = {UserComponent} />
-                </Switch>
+                <BrowserRouter>
+                    <Switch>
+                        <Route exact={true} path = '/user/:user' component = {UserComponent} />
+                        <Route path = '/' component = {ListComponent}/>
+                    </Switch>
+                </BrowserRouter>
             </div>
         );
     }
@@ -34,12 +30,11 @@ class App extends Component {
 
 export default connect(
     state => ({
-        usersList: state.usersList
+        usersList: state.usersList,
+        users: state.usersReducer.users
     }),
     dispatch => ({
-        onSaveUsersList: (data) => {
-            const payload = data;
-            dispatch({type: "SAVE_USERS_LIST", payload})
-        }
+        onRequestUsers: () =>
+            dispatch({ type: "API_CALL_REQUEST" })
     })
 )(App);

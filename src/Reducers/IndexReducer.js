@@ -1,9 +1,11 @@
 import {combineReducers} from 'redux';
 
-import usersList from "./SaveUsersLisrReducer";
 import changedData from "./ChangedDataReducer";
+import usersReducer from "./SaveUsersReducer";
+import saveIndex from "./SaveIndexReducer";
 
 export default combineReducers({
-    usersList,
-    changedData
+    changedData,
+    usersReducer,
+    saveIndex
 })
